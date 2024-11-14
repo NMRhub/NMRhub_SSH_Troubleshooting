@@ -6,7 +6,7 @@ After following the instructions at https://nmrbox.nmrhub.org/user-dashboard/ssh
 private key should be at $HOME/.ssh/id_ed25519 on Mac/Linux or "%HOMEDRIVE%%HOMEPATH%\.ssh\id_ed25519" on Windows.
 
 ## I have the private key in place but I can't connect.
-Try on more than one VM to make sure it's not just that VM. (Please let us know if you can SSH to one VM but another via support@nmrbox.org).
+Try on more than one VM to make sure it's not just that VM. (Please let us know if you can SSH to one VM but not another via support@nmrbox.org).
 
 Please try *ssh -vvv* and verify ssh is trying to user your private key. 
 
