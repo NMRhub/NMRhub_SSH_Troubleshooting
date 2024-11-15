@@ -43,3 +43,5 @@ Go to FileZillas Site Manager and make the following settings in the General tab
 
 **Key file:**      *local path*/.ssh/id_ed25519            
 
+## How do I use private key with [WINScp](https://winscp.net)?
+See [The Authentication Page](https://winscp.net/eng/docs/ui_login_authentication).
