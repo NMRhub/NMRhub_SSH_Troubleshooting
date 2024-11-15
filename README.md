@@ -19,6 +19,10 @@ ssh-keygen -lf $HOME/.ssh/id_ed25519.pub
 
 Please double check that listed at https://nmrbox.nmrhub.org/user-dashboard/ssh-key is the same as your $HOME/.ssh/id_ed25519.pub .
 
+## Home directory permissions ##
+If you home directory is writable by anyone other than you SSH will not work. Connect via [VNC](https://nmrbox.nmrhub.org/pages/getting-started) and *ls -l \~* .
+If **w** appears after the first group of permissions, drwx, use *chmod go-w \~* to correct.
+
 ## How do I use a private key with *rsync*?
 Add _-e "ssh -i /path/to/your/private_key"_ to your rsync command.
 
