@@ -1,5 +1,5 @@
 # SSH Troubleshooting
-NMRhub now requires an ssh keypair to connect use ssh / sftp / rsync and tools like FileZilla to connect to NMRhub virtual machines (VMs).
+[NMRhub](https://nmrhub.org) now requires an ssh keypair to connect use [ssh / sftp / rsync](https://openssh.com) and tools like [FileZilla](https://filezilla-project.org) to connect to NMRhub virtual machines (VMs).
 
 ## Where is my private key?
 After following the instructions at https://nmrbox.nmrhub.org/user-dashboard/ssh-key, your
