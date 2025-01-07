@@ -17,7 +17,8 @@ ssh-keygen -lf $HOME/.ssh/id_ed25519
 
 ssh-keygen -lf $HOME/.ssh/id_ed25519.pub
 
-Please double check that listed at https://nmrbox.nmrhub.org/user-dashboard/ssh-key is the same as your $HOME/.ssh/id_ed25519.pub .
+Please double check the key listed at https://nmrbox.nmrhub.org/user-dashboard/ssh-key is the same as your $HOME/.ssh/id_ed25519.pub .
+![Date key set](sample.jpeg)
 
 ## Home directory permissions ##
 If you home directory is writable by anyone other than you SSH will not work. Connect via [VNC](https://nmrbox.nmrhub.org/pages/getting-started) and *ls -l \~* .
