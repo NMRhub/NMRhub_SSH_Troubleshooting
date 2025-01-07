@@ -65,6 +65,8 @@ Your identification has been saved in id_ed25519rernst
 Your public key has been saved in id_ed25519rernst.pub
 ```
 
+*Add* the contents of id_ed25519rernst.pub to https://nmrbox.nmrhub.org/user-dashboard/ssh-key .
+
 Go to the home directory of the shared account. Create an .ssh directory if necessary and ensure it has permssions *drwx------* 
 ```cd $HOME
 mkdir -p .ssh
