@@ -45,3 +45,47 @@ Go to FileZillas Site Manager and make the following settings in the General tab
 
 ## How do I use private key with [WINScp](https://winscp.net)?
 See [The Authentication Page](https://winscp.net/eng/docs/ui_login_authentication).
+
+## How do I scp from a shared account?
+(Note: This is not an endorsement of shared accounts but that is a site specific decision.)
+
+If multiple users are using a shared account (e.g. from a spectrometer console), the following steps will allow copying local data to each user's account.
+For the example we assume your username is *rernst.*
+
+Create another ssh keypair **with a passphrase:**
+
+```
+ssh-keygen -t ed25519 -C "spectrometer scp"
+Generating public/private ed25519 key pair.
+Enter file in which to save the key (/Users/rernst/.ssh/id_ed25519): id_ed25519rernst
+Enter passphrase (empty for no passphrase):  <type a password>
+Enter same passphrase again: <retype the password> 
+Your identification has been saved in id_ed25519rernst
+Your public key has been saved in id_ed25519rernst.pub
+```
+
+Go to the home directory of the shared account. Create an .ssh directory if necessary and ensure it has permssions *drwx------* 
+```cd $HOME
+mkdir -p .ssh
+chmod 0o700 .ssh
+```
+
+Create or edit **~/.ssh./config**. Add the following lines.
+
+```
+Match User rernst Host *.nmrbox.org
+        IdentityFile ~/.ssh/id_ed25519rernst
+```
+
+You should now be able to do the following to scp data from the shared account to nmrbox.org.
+
+> scp fid rernst@*element*.nmrbox.org:
+
+This will prompt:
+
+> Enter passphrase for key '*home directory*/.ssh/id_ed25519rernst'
+
+at which point your enter the password you used when creating a keypair. 
+
+
+
