@@ -86,7 +86,7 @@ When multiple people share one account on a machine, each person should have the
 
 ## Part 1: Generate Individual SSH Keys
 
-Each user should generate their own key pair on their local machine (not the shared server).
+Each user should generate their own key pair on the shared machine.
 
 ### Step 1: Create a key pair with a descriptive name
 
