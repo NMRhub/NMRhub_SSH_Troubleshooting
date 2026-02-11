@@ -149,13 +149,21 @@ nano ~/.ssh/config
 
 ### Step 2: Add a host entry
 
-Add this configuration (adjust for your setup):
+Add this configuration (adjust for your setup) - one record as shown below per user on the machine:
 ```
 Host user1
-    HostName fileaccess.nmrbox.org
+    HostName krypton.nmrbox.org #or a different NMRbox host
     User user1
-    IdentityFile ~/.ssh/id_ed25519_username
+    IdentityFile ~/.ssh/id_ed25519_username1
     IdentitiesOnly yes
+
+Host user2
+    HostName krypton.nmrbox.org #or a different NMRbox host
+    User user2
+    IdentityFile ~/.ssh/id_ed25519_username2
+    IdentitiesOnly yes
+
+# etc ...
 ```
 
 **Options explained:**
