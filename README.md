@@ -62,8 +62,12 @@ Add the following option to your `sftp` command:
 Go to FileZilla's **Site Manager** and make the following settings in the **General** tab. You can leave the port blank, as it defaults to the correct value (22).
 
 - **Protocol:** SFTP - SSH File Transfer Protocol
-- **Host:** *element*.nmrbox.org
-- **Port:** [Leave blank]
+- **Host:** *element*.nmrbox.org 
+
+  [^1]: accesspool.nmrhub.org can be used for FileZilla / scp. The name maps to two different hosts, and both copy utilities will try both if either is offline for maintenance. 
+
+  
+- Port:** [Leave blank]
 - **Logon Type:** Key file
 - **User:** *username*
 - **Key file:** *local path*/.ssh/id_ed25519
@@ -151,26 +155,20 @@ nano ~/.ssh/config
 
 Add this configuration (adjust for your setup) - one record as shown below per user on the machine:
 ```
-Host user1
-    HostName krypton.nmrbox.org #or a different NMRbox host
-    User user1
-    IdentityFile ~/.ssh/id_ed25519_username1
+Match user inewton
+    IdentityFile ~/.ssh/id_ed25519_inewton
     IdentitiesOnly yes
 
-Host user2
-    HostName krypton.nmrbox.org #or a different NMRbox host
-    User user2
-    IdentityFile ~/.ssh/id_ed25519_username2
+Match user aeinstein
+    IdentityFile ~/.ssh/id_ed25519_aeinstein
     IdentitiesOnly yes
 
 # etc ...
 ```
 
 **Options explained:**
-- `Host user1` - A short alias you'll use to connect
-- `HostName` - The actual server address (domain or IP)
-- `User` - The shared account username on the server
-- `IdentityFile` - Path to your private key
+- Match user *inewton* - Match your nmrbox username
+- IdentityFile - Path to your private key
 - `IdentitiesOnly yes` - Only use the specified key (prevents trying other keys)
 
 ### Step 3: Set proper permissions
@@ -182,12 +180,10 @@ chmod 600 ~/.ssh/config
 ### Step 4: Test the connection
 
 ```bash
-ssh user1
+ssh inewton@krypton.nrmbox.org (or other avaible NMRbox server)
 ```
 
-You'll be prompted for your key's passphrase (not the server password). After entering it once, the connection should establish.
-
-Please note that in the SSH example directly above, you don't need to specify a hostname or key - just the alias for the connection (in this case user1) as defined in your `.ssh/config` file.
+You'll be prompted for your key's passphrase (not the server password). After entering it once, the connection should be established.
 
 As you'll have one record for each user with a key on this system, each user can use their own alias to SSH into their own account using the proper key.
 
