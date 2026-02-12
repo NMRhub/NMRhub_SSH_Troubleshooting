@@ -62,7 +62,7 @@ Add the following option to your `sftp` command:
 Go to FileZilla's **Site Manager** and make the following settings in the **General** tab. You can leave the port blank, as it defaults to the correct value (22).
 
 - **Protocol:** SFTP - SSH File Transfer Protocol
-- **Host:** *element*.nmrbox.org 
+- **Host:** *element*.nmrbox.org [^1]
 
   [^1]: accesspool.nmrhub.org can be used for FileZilla / scp. The name maps to two different hosts, and both copy utilities will try both if either is offline for maintenance. 
 
