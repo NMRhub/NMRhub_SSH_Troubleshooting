@@ -76,6 +76,41 @@ Go to FileZilla's **Site Manager** and make the following settings in the **Gene
 
 See [The Authentication Page](https://winscp.net/eng/docs/ui_login_authentication).
 
+## Can I avoid re-entering my passphrase on every connection? (SSH ControlMaster)
+
+If your private key is password-protected, OpenSSH's `ControlMaster` feature lets you authenticate once and reuse that connection for later sessions (including `scp`, `sftp`, and `rsync`) without re-entering your passphrase each time. Note that settings like port forwarding are fixed when the first ("master") connection is opened and can't be changed by later sessions that reuse it.
+
+### Mac/Linux
+
+Add an entry like this to `~/.ssh/config`:
+
+```
+Host *.nmrbox.org
+    ControlMaster auto
+    ControlPath ~/.ssh/sockets/%r@%h-%p
+    ControlPersist 600
+```
+
+Then create the socket directory once:
+
+```bash
+mkdir -p -m 700 ~/.ssh/sockets
+```
+
+- `ControlMaster auto` - reuse an existing connection if one exists, otherwise create one
+- `ControlPath` - where the connection socket is stored; `%r@%h-%p` keeps sockets unique per user/host/port
+- `ControlPersist 600` - keep the master connection open in the background for 600 seconds after your last session to it closes, so it's ready for reuse
+
+The first connection to a host will prompt for your passphrase as usual; subsequent connections within the persist window will not.
+
+### Windows/PuTTY
+
+In PuTTY, open **Connection > SSH** and check **"Share SSH connections if possible."** With this enabled, additional PuTTY, WinSCP, or `pscp`/`psftp` sessions to the same host can reuse an already-authenticated connection.
+
+![PuTTY connection sharing option](putty_controlmaster.png)
+
+> Screenshot and general approach adapted from Harvard FAS Research Computing's [*Using SSH ControlMaster for Single Sign-On*](https://docs.rc.fas.harvard.edu/kb/using-ssh-controlmaster-for-single-sign-on/), © The President and Fellows of Harvard College, licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+
 
 # SSH Key Setup for Multi-User Shared Account
 
